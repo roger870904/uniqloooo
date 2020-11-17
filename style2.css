@@ -1,0 +1,94 @@
+body
+{
+    min-height: 100;
+    height: 100%;
+    width: 100;
+    margin: 0;
+    padding: 0;
+
+    
+    
+    background: linear-gradient(58deg, rgba(85, 160, 90, 1)21%, rgba(235, 220, 125, 1)60%);
+    background: -moz-linear-gradient(58deg, rgba(85, 160, 90, 1)21%, rgba(235, 220, 125, 1)60%);
+    background: -webkit-linear-gradient(58deg, rgba(85, 160, 90, 1)21%, rgba(235, 220, 125, 1)60%);
+    background: -o-linear-gradient(58deg, rgba(85, 160, 90, 1)21%, rgba(235, 220, 125, 1)60%);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+}
+
+
+
+
+form{
+    width: 30%;
+    margin: 100px auto;
+    padding: 30px;
+    border: 1px solid #555;
+  
+    
+}
+input{
+    width: 100%;
+    border: 1px solid #f1e1e1;
+    display: block;
+    padding: 5px 10px;
+}
+button{
+    border: none;
+    padding: 10px;
+    border-radius: 10px;
+    
+}
+table{
+
+    width:60%;
+    border-collapse: collapse;
+    margin: 100px auto;
+}
+th,td{
+    height:50px;
+    vertical-align: center;
+    border: 1px solid black;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+    
+  }
+  
+  li {
+    float: left;
+    border-right:1px solid #bbb;
+  }
+  
+  li:last-child {
+    border-right: none;
+  }
+  
+  li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+  
+  li a:hover:not(.active) {
+    background-color: #111;
+  }
+  
+  .active {
+    background-color: #4CAF50;
+  }
+  .footer{
+    position: relative;
+    top: -100px;
+    height: 50px;
+    position: absolute;
+    bottom: 0;
+}
+
