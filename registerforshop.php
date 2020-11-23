@@ -20,7 +20,7 @@
       					<span><?php echo $email_error; ?></span>
       					<?php endif ?>
                       </div>
-                    
+                      
   					<div>
   						<input type="password"  placeholder="Password" name="password">
 	  				</div>
