@@ -1,4 +1,4 @@
-<?php include('process.php') ?>
+ <?php include('process.php') ?>
 <html>
 
 <head>
@@ -19,7 +19,8 @@
       					<?php if (isset($email_error)): ?>
       					<span><?php echo $email_error; ?></span>
       					<?php endif ?>
-  					</div>
+                      </div>
+                      
   					<div>
   						<input type="password"  placeholder="Password" name="password">
 	  				</div>
@@ -30,7 +31,5 @@
   					</form>
 	  		</body> 
 			
-			  
-
-
+   
 </html>

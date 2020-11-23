@@ -24,7 +24,7 @@ if($rows){//0 false 1 true
 //</html>
 session_start();
 $_SESSION['name']=$_POST['name'];
-header("refresh:0;url=index2.php");//如果成功跳轉至welcome.html頁面
+header("refresh:0;url=index.php");//如果成功跳轉至welcome.html頁面
 exit;
 }
 else{
