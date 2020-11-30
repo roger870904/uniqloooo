@@ -1,19 +1,27 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Uniqloooo by FCU</title>
-    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <meta name="description" content="" />
-    <meta name="keywords" content="" />
-    <!--[if lte IE 8]><script src="js/html5shiv.js"></script><![endif]-->
-    <link rel="stylesheet" href="css/skel.css" />
-    <link rel="stylesheet" href="css/style.css" />
-    <link rel="stylesheet" href="css/style-xlarge.css" />
-</head>
-<title>登陸</title>
+<?php
+session_start();
+?>
+<!DOCTYPE html>
 
-<style>
+<!--
+	Transit by TEMPLATED
+	templated.co @templatedco
+	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
+
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Uniqloooo by FCU</title>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<!--[if lte IE 8]><script src="js/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="css/skel.css" />
+		<link rel="stylesheet" href="css/style.css" />
+		<link rel="stylesheet" href="css/style-xlarge.css" />
+	</head>
+	<style>
   
     .wrapper {
         margin: 140px 0 140px auto;
@@ -116,43 +124,48 @@
         font: 11px Arial;
     }
 </style>
+	<body class="landing">
 
-<body>
-    <header id="header">
-        <h1><a href="index.php">Uniqloooo</a></h1>
-        <nav id="nav">
-            <ul>
-                <li><a href="index.php">首頁</a></li>
-                <li><a href="generic.html">暫定</a></li>
-                <li><a href="elements.html">暫定</a></li>
-                <li><a href="login.html">登入</a></li>
-                
-            </ul>
-        </nav>
-    </header>
-        <div class="wrapper">
-            <form action="login.php" method="post">
-                <div class="loginBox">
-                    <div class="loginBoxCenter">
-                        <p><label for="username">使用者名稱：</label></p>
-                        <!--autofocus 規定當頁面載入時按鈕應當自動地獲得焦點。 -->
-                        <!-- placeholder提供可描述輸入欄位預期值的提示資訊-->
-                        <p><input type="text" name="name" class="loginInput" autofocus="autofocus" required="required" autocomplete="off" placeholder="請輸入帳號" value="" /></p>
-                        <!-- required 規定必需在提交之前填寫輸入欄位-->
-                        <p><label for="password">密碼：</label></p>
-                        <p><input type="password" name="password" class="loginInput" required="required" placeholder="請輸入密碼" value="" /></p>
-                        
-                    </div>
-                    <div class="loginBoxButtons">
-    
-                        <p><input type="submit" name="submit" value="登入"><input type ="button" onclick="javascript:location.href='registerforcustomer.html'" value="註冊">
-                        
-                        
-                    </div>
-                </div>
-            </form>
-        </div>
-    
-</body>
+		<!-- Header -->
+			<header id="header">
+				<h1><a href="index.php">Uniqloooo</a></h1>
+				<nav id="nav">
+					<ul>
+						<li><a href="index.php">首頁</a></li>
+						<li><a href="generic.html">暫定</a></li>
+						<li><a href="elements.html">暫定</a></li>
+						<?php
+                        if(!isset ($_SESSION['name']))
+                        {
+                            echo '<li><a href="login.html">Login</a></li>';
+                            
+						    echo '<li><a href="registerforcustomer.html" class="button special">Sign Up</a></li>';
+                        }
+						else{
+                            echo '<li class="active"><a href="#">帳戶名稱:'.$_SESSION['name'].'</a></li>';
+						    echo '<li><a href="logout.php">logout</a></li>';
+                        }
+						?>
+					</ul>
+				</nav>
+				
+			</header>
+			<section id="banner">
+				<h2>Hi. This is Uniqloooo.</h2>
+				<p>這裡可以找到所有你想要的衣物。</p>
+				<select name="catordog">
+  				<optgroup label="Cats">
+    				<<option  value=''  style="color:#03b2eb">Tiger</option>
+    				<<option  value=''  style="color:#03b2eb">eopard</option>
+    				<<option  value=''  style="color:#03b2eb">Lynx</option>
+  				</optgroup>
+  				<optgroup label="Dogs">
+					<option>Grey Wolf</option>
+    				<option>Red Fox</option>
+    				<option>Fennec</option>
+  				</optgroup>
+				</select>
+			</section>
 
+    </body>
 </html>

@@ -1,5 +1,6 @@
-<!doctype html>
-<html lang="en">
+<?php include('processforcustomer.php') ?>
+<html>
+
 <head>
     <meta charset="UTF-8">
     <title>Uniqloooo by FCU</title>
@@ -11,7 +12,7 @@
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/style-xlarge.css" />
 </head>
-<title>登陸</title>
+<title>店家註冊</title>
 
 <style>
   
@@ -117,42 +118,43 @@
     }
 </style>
 
-<body>
-    <header id="header">
-        <h1><a href="index.php">Uniqloooo</a></h1>
-        <nav id="nav">
-            <ul>
-                <li><a href="index.php">首頁</a></li>
-                <li><a href="generic.html">暫定</a></li>
-                <li><a href="elements.html">暫定</a></li>
-                <li><a href="login.html">登入</a></li>
+			<body>
+				<header id="header">
+        			<h1><a href="index.html">Uniqloooo</a></h1>
+        			<nav id="nav">
+            			<ul>
+                			<li><a href="index.html">首頁</a></li>
+                			<li><a href="generic.html">暫定</a></li>
+                			<li><a href="elements.html">暫定</a></li>
+                			<li><a href="login.html">登入</a></li>
                 
-            </ul>
-        </nav>
-    </header>
-        <div class="wrapper">
-            <form action="login.php" method="post">
-                <div class="loginBox">
-                    <div class="loginBoxCenter">
-                        <p><label for="username">使用者名稱：</label></p>
-                        <!--autofocus 規定當頁面載入時按鈕應當自動地獲得焦點。 -->
-                        <!-- placeholder提供可描述輸入欄位預期值的提示資訊-->
-                        <p><input type="text" name="name" class="loginInput" autofocus="autofocus" required="required" autocomplete="off" placeholder="請輸入帳號" value="" /></p>
-                        <!-- required 規定必需在提交之前填寫輸入欄位-->
-                        <p><label for="password">密碼：</label></p>
-                        <p><input type="password" name="password" class="loginInput" required="required" placeholder="請輸入密碼" value="" /></p>
-                        
-                    </div>
-                    <div class="loginBoxButtons">
-    
-                        <p><input type="submit" name="submit" value="登入"><input type ="button" onclick="javascript:location.href='registerforcustomer.html'" value="註冊">
-                        
-                        
-                    </div>
-                </div>
-            </form>
-        </div>
-    
-</body>
-
+            			</ul>
+        			</nav>
+    			</header>
+  					<form method="post" action="registerforcustomer.php" id="register_form" align="center">	
+  					<h1><font color="white">註冊</font></h1>
+  						<div <?php if (isset($name_error)): ?> class="form_error" <?php endif ?> >
+	  					<input type="text" name="username"  placeholder="Username" value="<?php echo $username; ?>">
+	  						<?php if (isset($name_error)): ?>
+	  						<span><?php echo $name_error; ?></span>
+	  						<?php endif ?>
+  						</div>
+  					<div <?php if (isset($email_error)): ?> class="form_error" <?php endif ?> >
+      				<input type="email" name="email" placeholder="Email" value="<?php echo $email; ?>">
+      					<?php if (isset($email_error)): ?>
+      					<span><?php echo $email_error; ?></span>
+      					<?php endif ?>
+                      </div>
+                      
+  					<div>
+  						<input type="password"  placeholder="Password" name="password">
+	  				</div>
+	
+  					<div>
+  						<button type="submit" name="register" id="reg_btn">註冊</button>
+  					</div>
+  					</form>
+	  		</body> 
+			
+   
 </html>

@@ -24,6 +24,10 @@ if($rows){//0 false 1 true
 //</html>
 session_start();
 $_SESSION['name']=$_POST['name'];
+$sql = "select identity from user where username = '$username'";//檢測資料庫是否有對應的username和password的sql
+$result = mysqli_query($con,$sql);//執行sql
+$row=mysqli_fetch_assoc($result);
+$_SESSION['identity']=$row['identity'];
 header("refresh:0;url=index.php");//如果成功跳轉至welcome.html頁面
 exit;
 }

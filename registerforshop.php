@@ -1,4 +1,4 @@
- <?php include('process.php') ?>
+ <?php include('processforshop.php') ?>
 <html>
 
 <head>
@@ -118,7 +118,19 @@
     }
 </style>
 			<body>
-  					<form method="post" action="register.php" id="register_form" align="center">	
+				<header id="header">
+        			<h1><a href="index.html">Uniqloooo</a></h1>
+        			<nav id="nav">
+            			<ul>
+                			<li><a href="index.html">首頁</a></li>
+                			<li><a href="generic.html">暫定</a></li>
+                			<li><a href="elements.html">暫定</a></li>
+                			<li><a href="login.html">登入</a></li>
+                
+            			</ul>
+        			</nav>
+    			</header>
+  					<form method="post" action="registerforshop.php" id="register_form" align="center">	
   					<h1><font color="white">註冊</font></h1>
   						<div <?php if (isset($name_error)): ?> class="form_error" <?php endif ?> >
 	  					<input type="text" name="username"  placeholder="Username" value="<?php echo $username; ?>">
