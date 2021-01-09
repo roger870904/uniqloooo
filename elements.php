@@ -16,19 +16,17 @@ if (!isset($_SESSION)) {
 	}
 	//echo $_SESSION['identity'];
 }
-else{
-	$_SESSION['identity']='customer';
-}
 }
 ?>
 <!DOCTYPE html>
+
 <!--
 	Transit by TEMPLATED
 	templated.co @templatedco
 	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
 -->
 <html lang="en">
-	<head>
+    <head>
 		<meta charset="UTF-8">
 		<title>Uniqloooo by FCU</title>
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
@@ -39,13 +37,13 @@ else{
 		<link rel="stylesheet" href="css/style.css" />
 		<link rel="stylesheet" href="css/style-xlarge.css" />
 	</head>
-	<body class="landing">
+	<body>
 
 		<!-- Header -->
 			<header id="header">
 				<h1><a href="index.php">Uniqloooo</a></h1>
 				<nav id="nav">
-					<ul>
+				<ul>
 						<li><a href="index.php">首頁</a></li>
                         <?php
                         if(!isset ($_SESSION['name']))
@@ -74,136 +72,39 @@ else{
 				</nav>
 			</header>
 
-		<!-- Banner -->
-			<section id="banner">
-				<h2>Hi. This is Uniqloooo.</h2>
-				<p>這裡可以找到所有你想要的衣物。</p>
-				<ul class="actions">
-					<?php
-					if(!empty($_SESSION['identity']))
-					{
-						//echo $_SESSION['identity'];
-						if($_SESSION['identity']=='shops')
-						{
-							echo '<li><a href="mainforshop.php" class="button big">新增商品</a></li>';
-						}
-						else
-						{
-							echo '<li><a href="mainforcustomer.php" class="button big">立即查詢</a></li>';
-						}
-					}
-					else{
-						echo '<li><a href="mainforcustomer.php" class="button big">立即查詢</a></li>';
-					}
-					?>
-				</ul>
-			</section>
+		<!-- Main -->
+			<section id="main" class="wrapper">
+				<div class="container" align=center>
 
-		<!-- One -->
-			<section id="one" class="wrapper style1 special">
-				<div class="container">
-					<header class="major">
-						<h2>在這裡可以選擇你想要的衣飾</h2>
-						<p>不論是衣服、球鞋、運送用品等應有盡有</p>
+					<header class="major" >
+                        <h2>我的商品</h2>
+                        <?php
+                        $n="商品名稱:";
+                        $t="類別:";
+                        $r="已被預購數量:";
+                        $num="剩餘商品數量";
+                        $s="店家名稱:";
+                        $sql="SELECT id,name,type,reserve,number,shopname FROM commodity WHERE shopname='".$_SESSION['name']."'";
+                        $result = mysqli_query($con,$sql) ;
+                        echo '<table style=" width:1080px;">';
+                        if($result == FALSE) {
+                            die( mysqli_error($con)); // TODO: better error handling
+                        }
+                        while($row=mysqli_fetch_array($result,MYSQLI_ASSOC))
+                        {
+                            echo '<tr>';
+                            echo '<td width="100">';
+                            echo '<h1 align=center >'.$n.$row['name'].$t.$row['type'].$r.$row['reserve'].$num.$row['number'].$s.$row['shopname'].'</h1><br>';
+							//-echo '<input type="button" value="修改數量" onclick="location.href="要前往的網頁連結"">';
+							echo '<a href="revise.php?id='.$row['id'].'">修改數量';//-
+                            echo '</td>';
+                            
+                            echo '</tr>';
+                        }
+                        echo '</table>';
+                        ?>
 					</header>
-					<div class="row 150%">
-						<div class="4u 12u$(medium)">
-							<section class="box">
-								<i class="icon big rounded color1 fa-cloud"></i>
-								<h3>EX:衣服</h3>
-								<p>這裡是衣服的介紹</p>
-							</section>
-						</div>
-						<div class="4u 12u$(medium)">
-							<section class="box">
-								<i class="icon big rounded color9 fa-desktop"></i>
-								<h3>EX:球鞋</h3>
-								<p>這裡是球鞋的介紹</p>
-							</section>
-						</div>
-						<div class="4u$ 12u$(medium)">
-							<section class="box">
-								<i class="icon big rounded color6 fa-rocket"></i>
-								<h3>EX:運動用品</h3>
-								<p>這裡是運動用品的介紹</p>
-							</section>
-						</div>
-					</div>
-				</div>
-			</section>
-
-		<!-- Two -->
-			<section id="two" class="wrapper style2 special">
-				<div class="container">
-					<header class="major">
-						<h2>Lorem ipsum dolor sit</h2>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio, autem.</p>
-					</header>
-					<section class="profiles">
-						<div class="row">
-							<section class="3u 6u(medium) 12u$(xsmall) profile">
-								<img src="images/profile_placeholder.gif" alt="" />
-								<h4>Lorem ipsum</h4>
-								<p>Lorem ipsum dolor</p>
-							</section>
-							<section class="3u 6u$(medium) 12u$(xsmall) profile">
-								<img src="images/profile_placeholder.gif" alt="" />
-								<h4>Voluptatem dolores</h4>
-								<p>Ullam nihil repudi</p>
-							</section>
-							<section class="3u 6u(medium) 12u$(xsmall) profile">
-								<img src="images/profile_placeholder.gif" alt="" />
-								<h4>Doloremque quo</h4>
-								<p>Harum corrupti quia</p>
-							</section>
-							<section class="3u$ 6u$(medium) 12u$(xsmall) profile">
-								<img src="images/profile_placeholder.gif" alt="" />
-								<h4>Voluptatem dicta</h4>
-								<p>Et natus sapiente</p>
-							</section>
-						</div>
-					</section>
-					<footer>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quibusdam dolore illum, temporibus veritatis eligendi, aliquam, dolor enim itaque veniam aut eaque sequi qui quia vitae pariatur repudiandae ab dignissimos ex!</p>
-						<ul class="actions">
-							<li>
-								<a href="#" class="button big">Lorem ipsum dolor sit</a>
-							</li>
-						</ul>
-					</footer>
-				</div>
-			</section>
-
-		<!-- Three -->
-			<section id="three" class="wrapper style3 special">
-				<div class="container">
-					<header class="major">
-						<h2>Consectetur adipisicing elit</h2>
-						<p>Lorem ipsum dolor sit amet. Delectus consequatur, similique quia!</p>
-					</header>
-				</div>
-				<div class="container 50%">
-					<form action="#" method="post">
-						<div class="row uniform">
-							<div class="6u 12u$(small)">
-								<input name="name" id="name" value="" placeholder="Name" type="text">
-							</div>
-							<div class="6u$ 12u$(small)">
-								<input name="email" id="email" value="" placeholder="Email" type="email">
-							</div>
-							<div class="12u$">
-								<textarea name="message" id="message" placeholder="Message" rows="6"></textarea>
-							</div>
-							<div class="12u$">
-								<ul class="actions">
-									<li><input value="Send Message" class="special big" type="submit"></li>
-								</ul>
-							</div>
-						</div>
-					</form>
-				</div>
-			</section>
-
+            </section>
 		<!-- Footer -->
 			<footer id="footer">
 				<div class="container">

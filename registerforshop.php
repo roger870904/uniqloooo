@@ -119,10 +119,10 @@
 </style>
 			<body>
 				<header id="header">
-        			<h1><a href="index.html">Uniqloooo</a></h1>
+        			<h1><a href="index.php">Uniqloooo</a></h1>
         			<nav id="nav">
             			<ul>
-                			<li><a href="index.html">首頁</a></li>
+                			<li><a href="index.php">首頁</a></li>
                 			<li><a href="generic.html">暫定</a></li>
                 			<li><a href="elements.html">暫定</a></li>
                 			<li><a href="login.html">登入</a></li>
@@ -139,14 +139,17 @@
 	  						<?php endif ?>
   						</div>
   					<div <?php if (isset($email_error)): ?> class="form_error" <?php endif ?> >
-      				<input type="email" name="email" placeholder="Email" value="<?php echo $email; ?>">
+      				<input type="text" name="email" placeholder="Email" value="<?php echo $email; ?>">
       					<?php if (isset($email_error)): ?>
       					<span><?php echo $email_error; ?></span>
       					<?php endif ?>
                       </div>
                       
   					<div>
-  						<input type="password"  placeholder="Password" name="password">
+                          <input type="text"  placeholder="Password" name="password">
+                    </div>
+                    <div>
+                          <input type="text"  placeholder="Address" name="address">
 	  				</div>
 	
   					<div>

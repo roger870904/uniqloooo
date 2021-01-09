@@ -18,27 +18,22 @@ if (!isset($_SESSION)) {
 }
 }
 ?>
-<!DOCTYPE html>
+<html>
 
-<!--
-	Transit by TEMPLATED
-	templated.co @templatedco
-	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
--->
+<head>
+    <meta charset="UTF-8">
+    <title>Uniqloooo by FCU</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <!--[if lte IE 8]><script src="js/html5shiv.js"></script><![endif]-->
+    <link rel="stylesheet" href="css/skel.css" />
+    <link rel="stylesheet" href="css/style-xlarge.css" />
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+<title>查詢</title>
 
-<html lang="en">
-	<head>
-		<meta charset="UTF-8">
-		<title>Uniqloooo by FCU</title>
-		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-		<meta name="description" content="" />
-		<meta name="keywords" content="" />
-		<!--[if lte IE 8]><script src="js/html5shiv.js"></script><![endif]-->
-		<link rel="stylesheet" href="css/skel.css" />
-		<link rel="stylesheet" href="css/style.css" />
-		<link rel="stylesheet" href="css/style-xlarge.css" />
-	</head>
-	<style>
+<style>
   
     .wrapper {
         margin: 140px 0 140px auto;
@@ -141,13 +136,12 @@ if (!isset($_SESSION)) {
         font: 11px Arial;
     }
 </style>
-	<body class="landing">
 
-		<!-- Header -->
-			<header id="header">
-				<h1><a href="index.php">Uniqloooo</a></h1>
-				<nav id="nav">
-                <ul>
+			<body>
+				<header id="header">
+        			<h1><a href="index.php">Uniqloooo</a></h1>
+        			<nav id="nav">
+            			<ul>
 						<li><a href="index.php">首頁</a></li>
                         <?php
                         if(!isset ($_SESSION['name']))
@@ -173,33 +167,68 @@ if (!isset($_SESSION)) {
 						?>
 							
 					</ul>
-				</nav>
-				
-			</header>
-			<section id="banner">
-                <form method="post" action="search.php">
-                <p>關鍵字:</p>
-                <p><input type="text" width="30%" name="commodity"></input></p>
-                <div>
-                <input type = 'radio' name = 'categories' id = 'Shirt' value='Shirt' required>
-				<label for = 'Shirt' style="color:#FFFFFF" >襯衫</label>
-				<input type = 'radio' name = 'categories' id = 'T-Shirt' value='T-Shirt'>
-				<label for = 'T-Shirt' style="color:#FFFFFF" >T-Shirt</label>
-				<input type = 'radio' name = 'categories' id = 'Hoodie' value='Hoodie'>
-				<label for = 'Hoodie' style="color:#FFFFFF" >大學T</label>
-				<input type = 'radio' name = 'categories' id = 'Suit jacket' value='Suit jacket'>
-				<label for = 'Suit jacket' style="color:#FFFFFF" >西裝外套</able>
-				<input type = 'radio' name = 'categories' id = 'Athletic jacket' value='Athletic jacket'>
-				<label for = 'Athletic jacket' style="color:#FFFFFF" >運動外套</label>
-				<input type = 'radio' name = 'categories' id = 'WindBreaker' value='WindBreaker'>
-                <label for = 'WindBreaker' style="color:#FFFFFF" >防水外套</label>
-                </div>
-                <div>
-                <button type = 'submit' name = 'search' id = 'search_btn'>查詢商品</button>
-  				</div>  
-                </select>
-                    </form>
-			</section>
-
-    </body>
-</html>
+        			</nav>
+                </header>
+                <?php
+                //echo "123";
+                if (isset($_POST['search'])) {
+                $type=$_POST['categories'];
+                $name=$_POST['commodity'];
+                $n="商品名稱:";
+                $t="類別:";
+                $r="已被預購數量:";
+                $num="剩餘商品數量";
+                $s="店家名稱:";
+                if($name!=null){
+                    $sql="SELECT id,name,type,reserve,number,shopname FROM commodity WHERE type='$type' AND name='$name'";
+                    $result = mysqli_query($con,$sql) ;
+                    echo '<table style=" width:1080px;">';
+                    if($result == FALSE) {
+                        die( mysqli_error($con)); // TODO: better error handling
+                    }
+                    else{
+                        while($row=mysqli_fetch_array($result,MYSQLI_ASSOC))
+                        {
+                            echo '<tr>';
+                            echo '<td width="100">';
+                            echo '<h1 align=left >'.$n.$row['name'].$t.$row['type'].$r.$row['reserve'].$num.$row['number'].$s.$row['shopname'].'</h1><br>';
+                            if($row['number'] > 0){
+                                echo '<a href="order.php?id='.$row['id'].'">訂購';
+                            }
+                            echo '</td>';
+                            echo '</tr>';
+                            echo '</form>';
+                        }
+                        echo '</table>';
+                    }
+                }
+                else{
+                $sql="SELECT id,name,type,reserve,number,shopname FROM commodity WHERE type='$type'";
+                $result = mysqli_query($con,$sql) ;
+                echo '<table style=" width:1080px;">';
+                if($result == FALSE) {
+                    die( mysqli_error($con)); // TODO: better error handling
+                }
+                else{
+                    while($row=mysqli_fetch_array($result,MYSQLI_ASSOC))
+                    {
+                        echo '<tr>';
+                        echo '<td width="100">';
+                        echo '<h1 align=left >'.$n.$row['name'].$t.$row['type'].$r.$row['reserve'].$num.$row['number'].$s.$row['shopname'].'</h1><br>';
+                        if($row['number'] > 0){
+                            echo '<a href="order.php?id='.$row['id'].'">訂購';
+                        }
+                        
+                        //若有庫存 才顯示訂購按鈕
+                        echo '</td>';
+                        echo '</tr>';
+                    }
+                    echo '</table>';
+                    
+                }
+                }
+                }
+        ?>
+        
+            </body> 
+		</html>

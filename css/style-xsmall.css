@@ -67,16 +67,3 @@
 	#banner {
 		padding: 8em 2em 8em;
 	}
-/* placeholder */		
-::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-	color: rgb(255, 255, 255);
-	opacity: 1; /* Firefox */
-  }
-  
-  :-ms-input-placeholder { /* Internet Explorer 10-11 */
-	color: rgb(255, 255, 255);
-  }
-  
-  ::-ms-input-placeholder { /* Microsoft Edge */
-	color: rgb(255, 255, 255);
-  }

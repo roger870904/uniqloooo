@@ -8,6 +8,7 @@
     $email = $_POST['email'];
     $password = $_POST['password'];
     $identity = 'customer';
+    $address = $_POST['address'];
     $sql_u = "SELECT * FROM user WHERE username='$username'";
     $sql_e = "SELECT * FROM user WHERE email='$email'";
     $res_u = mysqli_query($con, $sql_u);
@@ -19,8 +20,8 @@
     }
     
     else{
-         $query = "INSERT INTO user (username, email, password,identity) 
-                  VALUES ('$username', '$email', '".md5($password)."','$identity')";
+         $query = "INSERT INTO user (username, email, password,identity,address) 
+                  VALUES ('$username', '$email', '".md5($password)."','$identity','$address')";
          //$query = "INSERT INTO user (username, email, password) 
                   //VALUES ('$username', '$email', '$password')";
          $results = mysqli_query($con, $query);

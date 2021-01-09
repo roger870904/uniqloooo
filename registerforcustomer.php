@@ -9,10 +9,10 @@
     <meta name="keywords" content="" />
     <!--[if lte IE 8]><script src="js/html5shiv.js"></script><![endif]-->
     <link rel="stylesheet" href="css/skel.css" />
-    <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/style-xlarge.css" />
+    <link rel="stylesheet" href="css/style.css" />
 </head>
-<title>店家註冊</title>
+<title>使用者註冊</title>
 
 <style>
   
@@ -120,10 +120,10 @@
 
 			<body>
 				<header id="header">
-        			<h1><a href="index.html">Uniqloooo</a></h1>
+        			<h1><a href="index.php">Uniqloooo</a></h1>
         			<nav id="nav">
             			<ul>
-                			<li><a href="index.html">首頁</a></li>
+                			<li><a href="index.php">首頁</a></li>
                 			<li><a href="generic.html">暫定</a></li>
                 			<li><a href="elements.html">暫定</a></li>
                 			<li><a href="login.html">登入</a></li>
@@ -140,15 +140,16 @@
 	  						<?php endif ?>
   						</div>
   					<div <?php if (isset($email_error)): ?> class="form_error" <?php endif ?> >
-      				<input type="email" name="email" placeholder="Email" value="<?php echo $email; ?>">
+      				<input type="text" name="email" placeholder="Email" value="<?php echo $email; ?>">
       					<?php if (isset($email_error)): ?>
       					<span><?php echo $email_error; ?></span>
       					<?php endif ?>
                       </div>
                       
   					<div>
-  						<input type="password"  placeholder="Password" name="password">
-	  				</div>
+                          <input type="text"  placeholder="Password" name="password">
+                    </div>
+                    
 	
   					<div>
   						<button type="submit" name="register" id="reg_btn">註冊</button>

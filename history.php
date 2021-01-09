@@ -1,5 +1,24 @@
-<!doctype html>
-<html lang="en">
+<?php
+include("connect.php");
+if (!isset($_SESSION)) {
+	if(!session_start()){
+	$username=$_SESSION['name'];
+	$sql="SELECT identity FROM user WHERE username='$username'";
+	$result=mysqli_query($con,$sql);
+	if(!$result)
+	{
+		echo ("Error: ".mysqli_error($con));
+		exit();
+	}
+	while($row=mysqli_fetch_array($result,MYSQLI_ASSOC))
+	{
+		$_SESSION['identity']=$row['identity'];
+	}
+	//echo $_SESSION['identity'];
+}
+}
+?>
+<html>
 
 <head>
     <meta charset="UTF-8">
@@ -9,17 +28,18 @@
     <meta name="keywords" content="" />
     <!--[if lte IE 8]><script src="js/html5shiv.js"></script><![endif]-->
     <link rel="stylesheet" href="css/skel.css" />
-    <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/style-xlarge.css" />
+    <link rel="stylesheet" href="css/style.css" />
 </head>
-<title>登陸</title>
+<title>查詢</title>
 
 <style>
+  
     .wrapper {
         margin: 140px 0 140px auto;
         width: 884px;
     }
-
+    
     .loginBox {
         background-color: #F0F4F6;
         /*上divcolor*/
@@ -35,16 +55,16 @@
         margin-left: -150px;
         width: 388px
     }
-
+    
     .loginBox .loginBoxCenter {
         border-bottom: 1px solid #DDE0E8;
         padding: 24px;
     }
-
+    
     .loginBox .loginBoxCenter p {
         margin-bottom: 10px
     }
-
+    
     .loginBox .loginBoxButtons {
         /*background-color: #F0F4F6;*/
         /*下divcolor*/
@@ -57,9 +77,9 @@
         vertical-align: center;
         filter: alpha(Opacity=80);
         -moz-opacity: 0.5;
-
+        
     }
-
+    
     .loginBox .loginInput {
         border: 1px solid #D2D9dC;
         border-radius: 2px;
@@ -69,12 +89,12 @@
         margin-bottom: 8px;
         width: 310px;
     }
-
+    
     .loginBox .loginInput:FOCUS {
         border: 1px solid #B7D4EA;
         box-shadow: 0 0 8px #B7D4EA;
     }
-
+    
     .loginBox .loginBtn {
         background-image: -moz-linear-gradient(to bottom, blue, #29a9e0);
         border: 1px solid #98CCE7;
@@ -87,11 +107,11 @@
         font: bold 13px Arial;
         padding: 10px 50px;
     }
-
+    
     .loginBox .loginBtn:HOVER {
         background-image: -moz-linear-gradient(to top, blue, #85CFEE);
     }
-
+    
     .loginBox a.forgetLink {
         color: #ABABAB;
         cursor: pointer;
@@ -101,60 +121,76 @@
         vertical-align: middle;
         /*忘記密碼*/
     }
-
+    
     .loginBox a.forgetLink:HOVER {
         color: #000000;
         text-decoration: none;
         /*忘記密碼*/
     }
-
+    
     .loginBox input#remember {
         vertical-align: middle;
     }
-
+    
     .loginBox label[for="remember"] {
         font: 11px Arial;
     }
 </style>
 
-<body>
-    <header id="header">
-        <h1><a href="index.php">Uniqloooo</a></h1>
-        <nav id="nav">
-            <ul>
-                <li><a href="index.php">首頁</a></li>
-                <li><a href="login.html">登入</a></li>
-                <li><a href="registerforcustomer.html">註冊</a></li>
-
-            </ul>
-        </nav>
-    </header>
-    <div class="wrapper">
-        <form action="login.php" method="post">
-            <div class="loginBox">
-                <div class="loginBoxCenter">
-                    <p><label for="username">使用者名稱：</label></p>
-                    <!--autofocus 規定當頁面載入時按鈕應當自動地獲得焦點。 -->
-                    <!-- placeholder提供可描述輸入欄位預期值的提示資訊-->
-                    <p><input type="text" name="name" class="loginInput" autofocus="autofocus" required="required"
-                            autocomplete="off" placeholder="請輸入帳號" value="" /></p>
-                    <!-- required 規定必需在提交之前填寫輸入欄位-->
-                    <p><label for="password">密碼：</label></p>
-                    <p><input type="password" name="password" class="loginInput" required="required" placeholder="請輸入密碼"
-                            value="" /></p>
-
-                </div>
-                <div class="loginBoxButtons">
-
-                    <p><input type="submit" name="submit" value="登入"><input type="button"
-                            onclick="javascript:location.href='registerforcustomer.html'" value="註冊">
-
-
-                </div>
-            </div>
-        </form>
-    </div>
-
-</body>
-
-</html>
+			<body>
+				<header id="header">
+        			<h1><a href="index.php">Uniqloooo</a></h1>
+        			<nav id="nav">
+                    <ul>
+						<li><a href="index.php">首頁</a></li>
+						<li><a href="generic.php">暫定</a></li>
+                        <?php
+                        if(!isset ($_SESSION['name']))
+                        {
+                            echo '<li><a href="login.html">Login</a></li>';
+                            
+						    echo '<li><a href="registerforcustomer.html" class="button special">Sign Up</a></li>';
+                        }
+						else{
+							if($_SESSION['identity']=='customer')
+							{
+								echo '<li><a href="history.php">歷史紀錄</a></li>';
+								echo '<li class="active"><a href="#">帳戶名稱:'.$_SESSION['name'].'</a></li>';
+						    	echo '<li><a href="logout.php">logout</a></li>';		
+							}
+							else{
+								echo '<li><a href="elements.php">我的商品</a></li>';
+								echo '<li class="active"><a href="#">帳戶名稱:'.$_SESSION['name'].'</a></li>';
+						    	echo '<li><a href="logout.php">logout</a></li>';		
+							}
+                            
+                        }
+						?>
+							
+					</ul>
+        			</nav>
+                </header>
+                <?php
+                $username=$_SESSION['name'];
+                $sql="SELECT * FROM oorders WHERE username='$username'";
+                $result=mysqli_query($con,$sql);
+                $n="帳號:";
+                $re="收件人:";
+                $add="收件地址:";
+                $com="商品名稱:";
+                $ty="商品種類:";
+                $shop="店家名稱";
+                $am="數量:";
+                $da="訂購日期:";
+                while($row=mysqli_fetch_array($result,MYSQLI_ASSOC))
+                {
+                    echo '<tr>';
+                    echo '<td width="100">';
+                    echo '<h1 align=center >'.$n.$row['username'].$re.$row['Recipient'].$add
+                        .$row['address'].$com.$row['commodity'].$ty.$row['type'].$shop.$row['shopname'].$am.$row['amount'].$da.$row['date'].'</h1><br>'; 
+                    echo '</td>';
+                    echo '</tr>';
+                }
+                ?>
+            </body>
+        </html>
